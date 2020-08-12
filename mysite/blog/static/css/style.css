@@ -44,7 +44,7 @@ h1 {
 }
 
 .credits {
-    max-width: 700px;
+    max-width: 520px;
     border: 0px solid black;
     margin: 0px auto;
     margin-top: 5px;
@@ -85,4 +85,10 @@ h1 {
 .date {
     color: grey;
     font-size: 1rem;
+}
+
+
+.forms {
+    margin: auto;
+    width: 90%;
 }

@@ -15,19 +15,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <h1><b><a href="/" style="text-decoration: none; color: black;">&nbsp;Blog</a></b></h1>
-<div class="credits">→ Project by<a href="https://www.instagram.com/alexeysekisov/" style="text-decoration: none;">&nbsp;alexeysekisov,</a>, developed using Django & Python.</div><br>
+<div class="credits">Project by<a href="https://www.instagram.com/alexeysekisov/" style="text-decoration: none;">&nbsp;alexeysekisov,</a>, developed using Django & Python.</div><br>
 {% if user.is_anonymous %}
-<div class="compose" style="text-decoration: none;"><a href="{% url 'post_new' %}">Post Anonymously <i class="far fa-plus-square"></i></span></a></div>
-<a href="/admin"><br>Or Login in with existing Account</a>
+<div class="text-center">
+        <a href="/login">LOGIN</a>
+        <b>&nbsp;|&nbsp;</b>
+        <a href="/register">SIGN UP</a>
+</div>
 {% elif user.is_authenticated %}
-<div class="compose" style="text-decoration: none;"><a href="{% url 'post_new' %}">Post as {{request.user|capfirst}} <i class="far fa-plus-square"></i></span></a></div>
+<div class="text-center">
+    <div class="compose" style="text-decoration: none;"><a href="{% url 'post_new' %}">Type something as {{request.user|capfirst}} <i class="far fa-plus-square"></i></span></a></div>
+    <a href="/logout">LOGOUT</a>
+</div>
 {% endif %}
 {% if user.is_authenticated %}
 <div style="margin: 10px 0px;">Logged in as: {{request.user}}</div>
 {% endif %}
 <body>
-    {% block content %}
-    {% endblock %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="text-center">
+            <div class="posts">
+                <b>- {{ message }}</b>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
 </body>
 
 </html>
