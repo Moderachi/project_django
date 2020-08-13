@@ -19,10 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w=mvijg7f+)$ck*c1&7xjyrvbctsmy&6!@#=e7#idpn!l4(x5c'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'w=mvijg7f+)$ck*c1&7xjyrvbctsmy&6!@#=e7#idpn!l4(x5c')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,6 +125,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'post_list'
 # Heroku: Update database configuration from $DATABASE_URL.
+
 import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
